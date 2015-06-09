@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>不设宽度水平居中</title>
+    <style>
+        .main{
+            width: 1000px;
+            background-color: #eeeeee;
+            margin: 0 auto ;
+            overflow: hidden;
+        }
+        .center-wraper{
+            float: left;
+            /*margin-left: 50%;*/
+            position: relative;
+            left:50%;
+            background-color: rgba(0, 254, 254, 0.13);
+
+
+        }
+        .center{
+            /*float: left;   margin-left: -50%;*/
+            position: relative;   left: -50%;
+            background-color: #45D0DA;
+            background-color: #45D0DA;
+
+
+
+        }
+    </style>
+</head>
+<body>
+  <div class="main">   <p >center设置 position: relative;和margin-left会
+  导致 center变小，减少的宽度的 margin-left的大小，设为-50%时 增加本身宽度的一半，本例 center的 前两对属性为替换实现</p>
+
+      <div class="center-wraper">
+          <div class="center">center 让我 居中</div>
+      </div>
+     前面的位置被center占居 若不想被占，center-wraper改为absolute定位, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur dolore eligendi et exercitationem fugit iusto quidem quis sequi vero.
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            height: 40px;
+            border: 1px solid #660000;
+
+        }
+    </style>
+</head>
+
+<head>
+    <title>sdfawea</title>
+</head>
+<body>
+<div style="">
+<div id="d2" style="display: block;"></div>       </div>
+<div id="d3"></div>
+</body>
+<script type="text/javascript">
+
+       function clk(e){
+           alert(e);
+//           alert(arguments.callee.caller) ;
+       }
+       var count=1;
+
+     function clickHandler(){
+        var xhr=new XMLHttpRequest();
+         xhr.open("POST","jp.js");
+         xhr.onreadystatechange=function(){
+             if(xhr.readyState==4 && xhr.status==200){
+                   alert(xhr.responseText);
+             }
+         }
+         xhr.send("name");
+         xhr.send("age");
+
+     }
+       var obj= document.getElementById('d3');
+     if(obj.addEventListener) {
+         obj.addEventListener('click',clickHandler,true);
+         obj.addEventListener('click',clickHandler,true) ;
+     } else{
+         obj.attachEvent('onclick',clickHandler);
+         obj.attachEvent('onclick',clickHandler);
+     }
+
+
+</script>
+</html>

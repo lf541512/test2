@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>ToolTip效果</title>
+    <style>
+
+    .wrapper{
+        width: 400px;
+        height: 300px;
+        margin: 0 auto;
+        background-color: #A8A8A8;
+        position: relative;
+    }
+        .inner{
+            width: 200px;
+            height: 200px;
+            border: 2px solid #fff;
+            position: absolute;
+            top: 50px;
+            left:100px;
+
+
+        }
+        .inner div{
+            width: 8px;
+            height: 8px;
+            border: 1px solid #fff;
+            background-color: #fff;
+            position: absolute;
+
+        }
+    .left-top{
+        left: -6px;
+        top: -4px;
+
+    }
+        .left{
+            left: -6px;
+            top: 50%;
+            margin-top: -4px;
+        }
+
+    .left-bottom{
+        left: -6px;
+        top: 100%;
+        margin-top: -4px;
+    }
+    .top{
+        left:50%;
+        top:-6px ;
+        margin-left: -4px;
+    }
+    .bottom{
+        left:50%;
+        top:100%;
+        margin-top:-4px ;
+        margin-left: -4px;
+    }
+    .right-top{
+        left:100%;
+        top:-6px ;
+        margin-left: -4px;
+    }
+
+    .right{
+        left:100%;
+        top:50% ;
+        margin-left: -4px;
+        margin-top: -4px;
+    }
+    .right-bottom{
+        left:100%;
+        top:100% ;
+        margin-left: -4px;
+        margin-top: -4px;
+    }
+    </style>
+</head>
+
+<body >
+<div class="wrapper">
+    <div class="inner" id="inner">
+        <div class="left-top"></div>
+        <div class="left"></div>
+        <div class="left-bottom"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="right-top"></div>
+        <div class="right"></div>
+        <div class="right-bottom"></div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="jquery-1.11.1.js"></script>
+<script type="text/javascript">
+     $(function () {
+         var md=false;
+         var lastPos={};
+          $('.inner').on('mousemove',function(event){
+              if(md==false){
+                  this.style.cursor='default';
+                  return;
+              }
+                this.style.cursor='move';
+              var top=this.offsetTop ;
+              var left=this.offsetLeft;
+              $(this).css({left:(left+event.clientX-lastPos.left),top:(top+event.clientY-lastPos.top)});
+
+              lastPos={left: event.clientX,top:event.clientY} ;
+
+          }).on('mousedown', function (event) {
+              md=true;
+              lastPos={left: event.clientX,top:event.clientY} ;
+              var obj=document.getElementById('inner');
+
+              alert(obj.offsetTop)
+
+          })  ;
+         $(document).on('mouseup', function () {
+             md=false;
+
+         })
+     })
+</script>
+
+</body>
+
+</html>

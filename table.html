@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="text/html" http-equiv="content-type" charset="utf-8">
+    <title>table</title>
+    <style type="text/css">
+      div{width:600px;display: inline-block;background-color: #58B1EA}
+    </style>
+    <script type="text/javascript" >
+        function clk(){
+            alert(arguments.callee.caller)
+//            alert(event.type);
+        }
+      window.onload=function (){
+          var t = document.getElementById("t");
+          t.innerHTML = "<p style='color:red'>aaaa</p>";  // 只能在IE9中被解析，其他浏览器不解析
+          /*下边是我自己测试的结论：
+           textarea表示文本区域，本应该把它里边的各种文字、标签等显示成纯文本的形式。
+           直接把诸如
+           <p style='color:red'>aa</p>的html形式标签放到textarea里，在IE9及其他浏览器里都会把P标签显示出来，
+           这个应该是正确的解析，没什么问题。
+           但是，把
+           <p style='color:red'>aa</p>
+           通过JS的innerHTML向textarea里插入，就能（只能）被IE9解析成红色的aa，把p标签当成html标签解析，
+           p被过滤掉了（注意，<!DOCTYPE>的文档声明必须要加上，不加的话，IE9就不会解析p标签了）。
+           当然，textarea里一般不应该用innerHTML方法插入内容。
+
+           */
+//          document.getElementById("aa").attachEvent("onclick",function(e1){
+//              alert(e1.clientX)
+//          })
+//          document.getElementById("aa").onclick=function (e){
+//              alert(e.clientX)
+//          }
+      }
+
+
+    </script>
+</head>
+<body>
+<main>
+    <textarea id="t" rows="6"></textarea>
+    <div id="aa" onclick="clk()">
+        A
+    </div>
+    <div>
+        B
+    </div>
+    <div>
+        C
+    </div>
+</main>
+
+</body>
+</html>

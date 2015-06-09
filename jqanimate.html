@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>jqanimate</title>
+    <meta content="text/html" http-equiv="content-type" charset="uft-8">
+
+    <style type="text/css">
+        #go{width: 500px;background-color: #58B1EA;height: 300px;}
+    </style>
+    <script type="text/javascript" src="jquery-1.11.1.js"></script>
+    <script type="text/javascript" >
+        $(function(){
+            $('#go').click(function(){
+                $('#go').animate({width:'100px'},1000) ;
+                $('#go').fadeTo(1000,0.5);
+            })
+        })
+    </script>
+</head>
+<body>
+   <div id="go">fsd;
+   <p>sldkf</p>
+   </div>
+</body>
+</html>
