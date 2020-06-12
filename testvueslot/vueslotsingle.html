@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+    <script>
+//         createCompiler->processSlot 编译template
+//         _u = resolveScopedSlots 
+//        _t =renderSlot
+// 匿名slot:父组件的render时把的对应的vnode放到slot name上，子组件初始化时从父组件取出对应的vnode,在自己的render(_t)里放置init时取到的vnode
+// 具名slot:父组件render时只生成一个渲染内容的函数_u,子组件在render前，从父组件中取出对应的data.scopedSlots，渲染时传入子组件slot上的attr调用生成vnode
+// 简单来说: 匿名slot在渲染父组件时生成对应的vnode,子组件只确定位置；具名slot在渲染父组件时只生成渲染函数，子组件传参(attr)调用函数生成vnode。
+        let Child = {
+            template:
+                '<div class="child">child<slot>d</slot>' +
+                '<slot name="cell1"  msg="msg">sdgf</slot>' +
+                '</div>',
+            // render() {
+            //     with (this) {
+            //         return _c(
+            //             'div',
+            //             { staticClass: 'child' },
+            //             [
+            //                 _v('child'),
+            //                 _c('Child2', {
+            //                     scopedSlots: _u([
+            //                         {
+            //                             key: 'cell',
+            //                             fn: function ({ props }) {
+            //                                 return [
+            //                                     _t('cell1', [_v('sdgf')], {
+            //                                         props: props,
+            //                                     }),
+            //                                 ];
+            //                             },
+            //                         },
+            //                     ]),
+            //                 }),
+            //             ],
+            //             1
+            //         );
+            //     }
+            // },
+        };
+
+        let vm = new Vue({
+            el: '#app',
+              template: '<div> parent' +
+              '<child>' +
+              '<div v-if="seen" slot="cell1"  slot-scope="props">' +
+                '<p>Hello from parent</p>' +
+              '</div>' +
+              '</child>' +
+              '</div>',
+            //   render() {
+            //     with (this) {
+            //         return _c(
+            //             'div',
+            //             [
+            //                 _v(' parent'),
+            //                 _c('child', {
+            //                     scopedSlots: _u([
+            //                         {
+            //                             key: 'cell1',
+            //                             fn: function (props) {
+            //                                 return _c('div', {}, [
+            //                                     _c('p', [_v('Hello from parent')]),
+            //                                 ]);
+            //                             },
+            //                         },
+            //                     ]),
+            //                 }),
+            //             ],
+            //             1
+            //         );
+            //     }
+            //   }
+            // render() {
+            //     with (this) {
+            //         return _c(
+            //             'div',
+            //             [
+            //                 _v(' parent'),
+            //                 _c('child', [
+            //                     seen
+            //                         ? _c('div', {
+            //                               scopedSlots: _u([
+            //                                   {
+            //                                       key: 'cell1',
+            //                                       fn: function (props) {
+            //                                           return _c('div', {}, [
+            //                                               _c('p', [
+            //                                                   _v(
+            //                                                       'Hello from parent'
+            //                                                   ),
+            //                                               ]),
+            //                                           ]);
+            //                                       },
+            //                                   },
+            //                               ]),
+            //                           })
+            //                         : _e(),
+            //                 ]),
+            //             ],
+            //             1
+            //         );
+            //     }
+            // },
+            data() {
+                return {
+                    seen: false,
+                };
+            },
+            created() {
+                setInterval(() => {
+                    this.seen = !this.seen;
+                }, 2000);
+            },
+            components: {
+                Child,
+            },
+        });
+    </script>
+</html>
